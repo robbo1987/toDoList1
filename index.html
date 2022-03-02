@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <script
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const root = document.querySelector("#root");
+      class App extends React.Component {
+          constructor() {
+              super()
+              this.state = {
+                  tasks: []
+              }
+          }
+        render() {
+            const tasks = this.state.tasks
+          return <div>
+                <h1> Robby's Tasks: ({tasks.length}) </h1>
+            </div>;
+        }
+      }
+
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
