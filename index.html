@@ -9,23 +9,49 @@
       crossorigin
     ></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.0/axios.min.js"
+      integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   </head>
   <body>
     <div id="root"></div>
     <script type="text/babel">
       const root = document.querySelector("#root");
       class App extends React.Component {
-          constructor() {
-              super()
-              this.state = {
-                  tasks: []
-              }
-          }
+        constructor() {
+          super();
+          this.state = {
+            tasks: [],
+          };
+          console.log("hello app");
+        }
+        async componentDidMount() {
+          const response = await axios.get("/api/tasks");
+          const tasks = response.data;
+          console.log("hello mount");
+          this.setState({ tasks });
+        }
+        createTask() {
+          console.log("create task");
+        }
         render() {
-            const tasks = this.state.tasks
-          return <div>
-                <h1> Robby's Tasks: ({tasks.length}) </h1>
-            </div>;
+          console.log("hello render");
+          const tasks = this.state.tasks;
+          return (
+            <div>
+              <h1> Robby's Tasks: ({tasks.length}) </h1>
+              <button onClick={this.createTask}>Create Task</button>
+              <ul>
+                {" "}
+                {tasks.map((task) => {
+                  return <li>{task.name} </li>;
+                })}
+              </ul>
+            </div>
+          );
         }
       }
 
