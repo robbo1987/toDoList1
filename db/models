@@ -1,0 +1,15 @@
+
+const Sequelize = require("sequelize");
+const { db } = require('./db')
+
+const Task = db.define("task", {
+  name: Sequelize.DataTypes.STRING,
+});
+
+Task.generateRandom = function () {
+  return this.create({ name: `Task ${Math.round(Math.random() * 5000)}` });
+};
+
+module.exports = {
+    Task
+}
