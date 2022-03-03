@@ -59,10 +59,10 @@
                 {tasks.map((task) => {
                   return (
                     <li>
-                      {task.name}
+                      {task.name} --
                       <button onClick={() => this.deleteTask(task)}>
                         Delete Task
-                      </button>
+                      </button> --
                     </li>
                   );
                 })}
@@ -76,3 +76,4 @@
     </script>
   </body>
 </html>
+
